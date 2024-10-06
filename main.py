@@ -10,10 +10,17 @@ frame1.grid(row=0,column=0,sticky=NW)
 toolsFrame = Frame(frame1, height=100, width=100, bg="green")
 toolsFrame.grid(row=0,column=0)
 
-pencilButton=Button(toolsFrame,text="Pencil",width=10)
+def usePencil():
+    stroke_color.set("black")
+
+def useEraser():
+    stroke_color.set("white")
+    canvas["cursor"]=DOTBOX
+
+pencilButton=Button(toolsFrame,text="Pencil",width=10,command=usePencil)
 pencilButton.grid(row=0,column=0)
 
-eraserButton=Button(toolsFrame,text="Eraser",width=10)
+eraserButton=Button(toolsFrame,text="Eraser",width=10,command=useEraser)
 eraserButton.grid(row=1,column=0)
 
 toolsLabel=Label(toolsFrame,text="Tools",width=10)
@@ -23,7 +30,7 @@ toolsLabel.grid(row=2,column=0)
 frame2 = Frame(root,height=500,width=1100,bg="yellow")
 frame2.grid(row=1,column=0)
 
-canvas=Canvas(frame2, height=500, width=1100, bg="white")
+canvas=Canvas(frame2,height=500,width=1100,bg="white")
 canvas.grid(row=0,column=0)
 
 #canvas.create_line(100,100,200,200)
@@ -31,6 +38,8 @@ canvas.grid(row=0,column=0)
 #basically line from (x,y) to (x',y')
 
 #variables for pencil
+stroke_color=StringVar()
+stroke_color.set("green")
 
 prevPoint = [0,0]
 currentPoint = [0,0]
@@ -42,7 +51,7 @@ def paint(event):
     currentPoint = [x,y]
     #canvas.create_oval(x,y,x+2,y+2,fill="black")
     if prevPoint!= [0,0] : #ab top left corner se start nhi hoga
-        canvas.create_line(prevPoint[0],prevPoint[1],currentPoint[0],currentPoint[1])
+        canvas.create_line(prevPoint[0],prevPoint[1],currentPoint[0],currentPoint[1],fill=stroke_color.get())
 
     prevPoint=currentPoint
 
