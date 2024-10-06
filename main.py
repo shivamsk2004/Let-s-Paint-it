@@ -1,5 +1,6 @@
 from tkinter import*
 from tkinter import colorchooser
+import PIL.ImageGrab as ImageGrab
 
 root=Tk()
 root.title("Let's Paint")
@@ -76,6 +77,18 @@ previousColorButton.grid(row=1,column=0)
 
 previousColor2Button=Button(colorBoxFrame,text="Previous2",width=10,command=lambda:stroke_color.set(previousColor2.get()))
 previousColor2Button.grid(row=2,column=0)
+
+#saveImageFrame
+def saveImage():
+    x=root.winfo_rootx()
+    y=root.winfo_rooty()+110
+    img=ImageGrab.grab(bbox=(x,y,x+1100,y+500))
+    img.show()
+saveImageFrame=Frame(frame1,height=100,width=100,relief=SUNKEN,borderwidth=3)
+saveImageFrame.grid(row=0,column=4)
+
+saveImageButton=Button(saveImageFrame,text="Save",bg="white",width=10,command=saveImage)
+saveImageButton.grid(row=0,column=0)
 
 #colorsFrame
 colorsFrame=Frame(frame1,height=100,width=100,relief=SUNKEN,borderwidth=3)
