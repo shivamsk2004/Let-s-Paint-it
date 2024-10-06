@@ -112,6 +112,19 @@ newImageButton.grid(row=1,column=0)
 clearImageButton=Button(saveImageFrame,text="Clear",bg="white",width=10,command=clear)
 clearImageButton.grid(row=2,column=0)
 
+#write textFrame
+textValue = StringVar()
+def writeText(event):
+    canvas.create_text(event.x,event.y,text=textValue.get())
+textFrame = Frame(frame1, height=100 , width=200, relief=SUNKEN , borderwidth=3)
+textFrame.grid(row = 0 , column=6)
+
+textTitleButton = Label(textFrame , text="Write you Text here:" , bg="white" , width=20 )
+textTitleButton.grid(row=0 , column=0)
+entryButton = Entry(textFrame, textvariable=textValue, bg="white" , width=20 )
+entryButton.grid(row=1 , column=0)
+clearButton = Button(textFrame , text="Clear" , bg="white" , width=20 , command=lambda:textValue.set(""))
+clearButton.grid(row=2 , column=0)
 #helpSettingFrame
 def help():
     messagebox.showinfo("Help","1.Click on {Select Color} Option selcect specific color\n2.Click on {Clear} to clear entire Canvas")
@@ -187,6 +200,7 @@ def paint(event):
 canvas.bind("<B1-Motion>",paint)
 canvas.bind("<ButtonRelease-1>",paint)
 canvas.bind("<B3-Motion>",paintRight)
+canvas.bind("<Button-2>",writeText)
 #B-3 is used for the right button
 #canvas.bind("<Button-1>",paint)
 #mouse ke left button ke saath connect hogaya hai
