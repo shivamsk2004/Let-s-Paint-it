@@ -164,6 +164,11 @@ canvas.grid(row=0,column=0)
 
 prevPoint = [0,0]
 currentPoint = [0,0]
+def paintRight(event):
+    x=event.x
+    y=event.y
+    canvas.create_arc(x,y,x+stroke_size.get(),y+stroke_size.get(),fill=stroke_color.get(),outline=stroke_color.get(),width=stroke_size.get())
+
 def paint(event):
     global prevPoint
     global currentPoint
@@ -181,6 +186,8 @@ def paint(event):
         
 canvas.bind("<B1-Motion>",paint)
 canvas.bind("<ButtonRelease-1>",paint)
+canvas.bind("<B3-Motion>",paintRight)
+#B-3 is used for the right button
 #canvas.bind("<Button-1>",paint)
 #mouse ke left button ke saath connect hogaya hai
 
