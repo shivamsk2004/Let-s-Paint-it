@@ -52,7 +52,11 @@ colorBoxFrame.grid(row=0,column=2)
 
 def selectColor():
     selectedColor=colorchooser.askcolor("blue",title="Select Color")
-    print(selectColor)
+    if selectedColor[1]==None:
+        stroke_color.set("black") 
+    else:
+        stroke_color.set(selectedColor[1])
+
 colorBoxButton=Button(colorBoxFrame,text="Select Color",width=10,command=selectColor)
 colorBoxButton.grid(row=0,column=0)
 #tkinter mein rows,columns by default 0 se start hoti hai
