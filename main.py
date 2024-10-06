@@ -107,10 +107,28 @@ saveImageFrame.grid(row=0,column=4)
 
 saveImageButton=Button(saveImageFrame,text="Save",bg="white",width=10,command=saveImage)
 saveImageButton.grid(row=0,column=0)
-newImageButton=Button(saveImageFrame,text="New",bg="white",width=1,command=createNew)
-newImageButton.grid(row=2,column=0)
-clearImageButton=Button(saveImageFrame,text="clear",bg="white",width=10,command=clear)
+newImageButton=Button(saveImageFrame,text="New",bg="white",width=10,command=createNew)
+newImageButton.grid(row=1,column=0)
+clearImageButton=Button(saveImageFrame,text="Clear",bg="white",width=10,command=clear)
 clearImageButton.grid(row=2,column=0)
+
+#helpSettingFrame
+def help():
+    messagebox.showinfo("Help","1.Click on {Select Color} Option selcect specific color\n2.Click on {Clear} to clear entire Canvas")
+def settings():
+    messagebox.showwarning("Settings","Not Available") 
+def about():
+    messagebox.showinfo("About","User-Friendly Paint App")
+helpSettingFrame=Frame(frame1,height=100,width=100,relief=SUNKEN,borderwidth=3)
+helpSettingFrame.grid(row=0,column=5)
+
+helpButton=Button(helpSettingFrame,text="Help",bg="white",width=10,command=help)
+helpButton.grid(row=0,column=0)
+settingButton=Button(helpSettingFrame,text="Settings",bg="white",width=10,command=settings)
+settingButton.grid(row=1,column=0)
+aboutButton=Button(helpSettingFrame,text="About",bg="white",width=10,command=about)
+aboutButton.grid(row=2,column=0)
+
 #colorsFrame
 colorsFrame=Frame(frame1,height=100,width=100,relief=SUNKEN,borderwidth=3)
 colorsFrame.grid(row=0,column=3)
