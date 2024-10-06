@@ -5,7 +5,19 @@ root.title("Let's Paint")
 root.geometry("1100x600")
 
 frame1 = Frame(root,height=100,width=1100,bg="red")
-frame1.grid(row=0,column=0)
+frame1.grid(row=0,column=0,sticky=NW)
+
+toolsFrame = Frame(frame1, height=100, width=100, bg="green")
+toolsFrame.grid(row=0,column=0)
+
+pencilButton=Button(toolsFrame,text="Pencil",width=10)
+pencilButton.grid(row=0,column=0)
+
+eraserButton=Button(toolsFrame,text="Eraser",width=10)
+eraserButton.grid(row=1,column=0)
+
+toolsLabel=Label(toolsFrame,text="Tools",width=10)
+toolsLabel.grid(row=2,column=0)
 #tkinter mein rows,columns by default 0 se start hoti hai
 #frames matlab alag alag blocks
 frame2 = Frame(root,height=500,width=1100,bg="yellow")
@@ -33,8 +45,12 @@ def paint(event):
         canvas.create_line(prevPoint[0],prevPoint[1],currentPoint[0],currentPoint[1])
 
     prevPoint=currentPoint
+
+    if event.type == "5" : #ye terminal se samajh aaya ki line nikalo toh 
+        prevPoint=[0,0]    #6 number hota hai, agar chod do toh 5 ho jata hai
         
 canvas.bind("<B1-Motion>",paint)
+canvas.bind("<ButtonRelease-1>",paint)
 #canvas.bind("<Button-1>",paint)
 #mouse ke left button ke saath connect hogaya hai
 
