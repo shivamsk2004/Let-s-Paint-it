@@ -10,5 +10,13 @@ frame1.grid(row=0,column=0)
 #frames matlab alag alag blocks
 frame2 = Frame(root,height=500,width=1100,bg="yellow")
 frame2.grid(row=1,column=0)
+
+canvas=Canvas(frame2, height=500, width=1100, bg="white")
+canvas.grid(row=0,column=0)
+
+canvas.create_line(100,100,200,200)
+canvas.create_oval(100,100,120,120,fill="black")
+#basically line from (x,y) to (x',y')
+
 root.resizable(False,False) #we don't need to resize height as well width
 root.mainloop()
