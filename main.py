@@ -35,6 +35,7 @@ defaultButton = Button(sizeFrame,text="Default",width=10,command=usePencil)
 defaultButton.grid(row=0,column=0)
 
 stroke_size = IntVar()
+stroke_size.set(1)
 options = [1,2,3,4,5]
 
 sizeList=OptionMenu(sizeFrame,stroke_size,*options)
@@ -50,21 +51,31 @@ stroke_color.set("black")
 colorBoxFrame=Frame(frame1,height=100,width=100,relief=SUNKEN,borderwidth=3)
 colorBoxFrame.grid(row=0,column=2)
 
+previousColor=StringVar()
+previousColor.set("white")
+previousColor2=StringVar()
+previousColor2.set("white")
+
 def selectColor():
     selectedColor=colorchooser.askcolor("blue",title="Select Color")
     if selectedColor[1]==None:
         stroke_color.set("black") 
     else:
         stroke_color.set(selectedColor[1])
+        previousColor2.set(previousColor.get())
+        previousColor.set(selectedColor[1])
+       
+        previousColorButton["bg"]=previousColor.get()
+        previousColor2Button["bg"]=previousColor2.get()
 
 colorBoxButton=Button(colorBoxFrame,text="Select Color",width=10,command=selectColor)
 colorBoxButton.grid(row=0,column=0)
 
-colorBoxButton=Button(colorBoxFrame,text="Previous",width=10,command=selectColor)
-colorBoxButton.grid(row=1,column=0)
+previousColorButton=Button(colorBoxFrame,text="Previous",width=10,command=lambda:stroke_color.set(previousColor.get()))
+previousColorButton.grid(row=1,column=0)
 
-colorBoxButton=Button(colorBoxFrame,text="Previous1",width=10,command=selectColor)
-colorBoxButton.grid(row=2,column=0)
+previousColor2Button=Button(colorBoxFrame,text="Previous2",width=10,command=lambda:stroke_color.set(previousColor2.get()))
+previousColor2Button.grid(row=2,column=0)
 
 #colorsFrame
 colorsFrame=Frame(frame1,height=100,width=100,relief=SUNKEN,borderwidth=3)
