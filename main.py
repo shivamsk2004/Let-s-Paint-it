@@ -1,6 +1,8 @@
 from tkinter import*
 from tkinter import colorchooser
 import PIL.ImageGrab as ImageGrab
+from tkinter import filedialog
+from tkinter import messagebox
 
 root=Tk()
 root.title("Let's Paint")
@@ -80,10 +82,15 @@ previousColor2Button.grid(row=2,column=0)
 
 #saveImageFrame
 def saveImage():
+    fileLocation=filedialog.asksaveasfilename(defaultextension="jpg")
     x=root.winfo_rootx()
     y=root.winfo_rooty()+110
     img=ImageGrab.grab(bbox=(x,y,x+1100,y+500))
-    img.show()
+    img.save(fileLocation)
+    showImage=messagebox.askyesno("Let's Paint it","Do you want to open image?")
+    print(showImage)
+    if showImage:
+        img.show()
 saveImageFrame=Frame(frame1,height=100,width=100,relief=SUNKEN,borderwidth=3)
 saveImageFrame.grid(row=0,column=4)
 
