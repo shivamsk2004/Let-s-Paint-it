@@ -6,7 +6,7 @@ root.geometry("1100x600")
 
 frame1 = Frame(root,height=100,width=1100)
 frame1.grid(row=0,column=0,sticky=NW)
-
+#toolsFrame
 toolsFrame = Frame(frame1, height=100, width=100)
 toolsFrame.grid(row=0,column=0)
 
@@ -26,6 +26,7 @@ eraserButton.grid(row=1,column=0)
 toolsLabel=Label(toolsFrame,text="Tools",width=10)
 toolsLabel.grid(row=2,column=0)
 
+#sizeFrame
 sizeFrame=Frame(frame1,height=100,width=100)
 sizeFrame.grid(row=0,column=1)
 
@@ -42,7 +43,7 @@ sizeLabel=Label(sizeFrame,text="Size",width=10)
 sizeLabel.grid(row=2,column=0)
 
 stroke_color=StringVar()
-stroke_color.set("green")
+stroke_color.set("black")
 
 #tkinter mein rows,columns by default 0 se start hoti hai
 #frames matlab alag alag blocks
@@ -66,7 +67,7 @@ def paint(event):
     currentPoint = [x,y]
     #canvas.create_oval(x,y,x+2,y+2,fill="black")
     if prevPoint!= [0,0] : #ab top left corner se start nhi hoga
-        canvas.create_line(prevPoint[0],prevPoint[1],currentPoint[0],currentPoint[1],fill=stroke_color.get())
+        canvas.create_polygon(prevPoint[0],prevPoint[1],currentPoint[0],currentPoint[1],fill=stroke_color.get(),outline=stroke_color.get(),width=stroke_size.get())
 
     prevPoint=currentPoint
 
