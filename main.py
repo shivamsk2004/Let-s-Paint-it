@@ -82,21 +82,35 @@ previousColor2Button.grid(row=2,column=0)
 
 #saveImageFrame
 def saveImage():
-    fileLocation=filedialog.asksaveasfilename(defaultextension="jpg")
-    x=root.winfo_rootx()
-    y=root.winfo_rooty()+110
-    img=ImageGrab.grab(bbox=(x,y,x+1100,y+500))
-    img.save(fileLocation)
-    showImage=messagebox.askyesno("Let's Paint it","Do you want to open image?")
-    print(showImage)
-    if showImage:
-        img.show()
+    try:
+        fileLocation=filedialog.asksaveasfilename(defaultextension="jpg")
+        x=root.winfo_rootx()
+        y=root.winfo_rooty()+110
+        img=ImageGrab.grab(bbox=(x,y,x+1100,y+500))
+        img.save(fileLocation)
+        showImage=messagebox.askyesno("Let's Paint it","Do you want to open image?")
+        print(showImage)
+        if showImage:
+            img.show()
+    except  Exception as e:
+        messagebox.showinfo("Let's Paint it:","Error Occured")
+
+def clear():
+    if messagebox.askokcancel("Let's Paint it","Do you want to clear everything"):
+       canvas.delete('all')
+
+def createNew():
+    if messagebox.askyesno("Let's Paint it","Do you want to save before you clear everything?"):
+        saveImage()
 saveImageFrame=Frame(frame1,height=100,width=100,relief=SUNKEN,borderwidth=3)
 saveImageFrame.grid(row=0,column=4)
 
 saveImageButton=Button(saveImageFrame,text="Save",bg="white",width=10,command=saveImage)
 saveImageButton.grid(row=0,column=0)
-
+newImageButton=Button(saveImageFrame,text="New",bg="white",width=1,command=createNew)
+newImageButton.grid(row=2,column=0)
+clearImageButton=Button(saveImageFrame,text="clear",bg="white",width=10,command=clear)
+clearImageButton.grid(row=2,column=0)
 #colorsFrame
 colorsFrame=Frame(frame1,height=100,width=100,relief=SUNKEN,borderwidth=3)
 colorsFrame.grid(row=0,column=3)
