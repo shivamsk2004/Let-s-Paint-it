@@ -1,4 +1,5 @@
 from tkinter import*
+from tkinter import colorchooser
 
 root=Tk()
 root.title("Let's Paint")
@@ -45,6 +46,15 @@ sizeLabel.grid(row=2,column=0)
 stroke_color=StringVar()
 stroke_color.set("black")
 
+#colorBoxFrame
+colorBoxFrame=Frame(frame1,height=100,width=100,relief=SUNKEN,borderwidth=3)
+colorBoxFrame.grid(row=0,column=2)
+
+def selectColor():
+    selectedColor=colorchooser.askcolor("blue",title="Select Color")
+    print(selectColor)
+colorBoxButton=Button(colorBoxFrame,text="Select Color",width=10,command=selectColor)
+colorBoxButton.grid(row=0,column=0)
 #tkinter mein rows,columns by default 0 se start hoti hai
 #frames matlab alag alag blocks
 frame2 = Frame(root,height=500,width=1100,bg="yellow")
